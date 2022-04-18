@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="popup-content">
+
+    <div class="popup-info">
+
+        <div class="row ">
+            <div class="custom-col-pop col-md-5 ">
+                <div class="dish-img" style="background-image: url('{{ recipe.img.url}}');">
+                    <div class="img-title">{{recipe.title}}</div>
+                </div>
+                {% if request.user.is_authenticated %}
+                <div class="update-url" style="text-align:center;" >
+                    <a href="{% url 'update-recipe' recipe.slug %}">update recipe</a>
+                </div>
+                {% endif %}
+
+            </div>
+            <div class="custom-col-pop">
+                <div class="ingredient">
+
+                    <h2 class="section-heading">Ingredients</h2>
+                    <ul>
+                        {% for item in ingredients%}
+                        <li><i class="far fa-circle ingr-circle"></i> {{item.ingredient.title}} - {{ item.quantity}} г
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="recipe-detail">
+            <div class="section">
+                <div class="section-content">
+                    {{recipe.description}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

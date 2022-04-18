@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="add-recipe">
+        <form action="{% url 'add-recipe' %}" enctype="multipart/form-data" method="post" >
+            {% csrf_token %}
+            {% for field in form  %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            {{ formset.management_form }}
+            <div id="recipe-list-form">
+                {% for field in formset %}
+                <div id ="form-0" class="form-group formset-recipe-list">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            </div>
+
+            <button id="add-more" class="btn btn-dark" type="button">Add more ingredients</button> <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

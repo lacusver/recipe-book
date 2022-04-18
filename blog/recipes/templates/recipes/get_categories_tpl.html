@@ -1,0 +1,5 @@
+{% for category in categories %}
+<li class="nav-item">
+    <a class="nav-link scroll" href="{{ category.get_absolute_url }}">{{category.title}} recipes</a>
+</li>
+{% endfor %}
